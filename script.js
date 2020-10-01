@@ -7,6 +7,7 @@ let tick = 60 / bpm;    // time of one beats
 let timer;          // timer for background color change 
 let pBarTimer;      // timer for progress bar
 
+
 function getRandomColor() {     // generate random color code
     let letters = '0123456789ABCDEF';
     let color = '#';
@@ -35,10 +36,36 @@ function move() {           // move progress bar
     }, tick*10);        // this loop perform for every tick*10 seconds
 }
 
+//when clicking button
+function handleClick(event){
+    //get the button
+    const button = event.target;
+    //check the action status
+    const stopAction = (button.dataset.action != "Start");
+    //switch the action
+    const actionToggle = (!stopAction)?"Stop":"Start";
+    
+    button.value = `${actionToggle} Metronome`;
+    button.dataset.action = actionToggle;
+
+    if(stopAction){
+        stopMetronome();
+    }else{
+        startMetronome();
+    }
+    
+}
+
 function startMetronome(){              // change background color
     move();
     timer = setInterval(() => {                    
         metronome.style.background = getRandomColor();
         new Audio('assets/click.wav').play();
     }, tick*1000);          // this loop perform after every tick*1000 seconds
+    
+}
+
+function stopMetronome(){
+    clearInterval(id);
+    clearInterval(timer);
 }
