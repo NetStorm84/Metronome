@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Metronome</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div id="metronome">
+            <div id="bpm">
+                <input type="number" value="60" onchange="bpmChange(this.value)" id="bpm-input">
+                <span>BPM</span>
+                <div id="start-btn">
+                    <input type="button" value="Start Metronome" onclick="startMetronome()">
+                </div>
+            </div>
+            <div id="progress">
+                <div id="progress-bar"></div>
+            </div>
+        </div>
+    </body>
+    <script src="script.js"></script>
+</html>
