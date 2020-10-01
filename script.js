@@ -7,6 +7,8 @@ let tick = 60 / bpm; // time of one beats
 let timer; // timer for background color change
 let pBarTimer; // timer for progress bar
 
+let shouldMove = false;
+
 function getRandomColor() {
 	// generate random color code
 	let letters = "0123456789ABCDEF";
@@ -22,19 +24,26 @@ function bpmChange(val) {
 	tick = 60 / bpm;
 }
 
-function move() {
-	// move progress bar
-
-	let width = 1;
-	id = setInterval(() => {
+// move progress bar
+function move(width = 1) {
+	// every time move() is called, it
+	// uses the most recent tick value, which
+	// lets us adjust the speed of the metronome while it is
+	// running
+	setTimeout(() => {
+		let nextWidth = width;
 		if (width > 100) {
 			endProgress();
-			width = 1;
+			nextWidth = 1;
 		} else {
 			pBar.style.width = width + "vw";
-			width++;
+			nextWidth++;
 		}
-	}, tick * 10); // this loop perform for every tick*10 seconds
+
+		if (shouldMove) {
+			move(nextWidth);
+		}
+	}, tick * 10)
 }
 
 // cahnge color and play sound when progress bar is 100% width
@@ -64,10 +73,11 @@ function handleClick(event) {
 
 function startMetronome() {
 	// change background color
+	shouldMove = true;
 	move();
 }
 
 function stopMetronome() {
-	clearInterval(id);
+	shouldMove = false;
 	clearInterval(timer);
 }
