@@ -1,24 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Metronome</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <div id="metronome">
-            <div id="bpm">
-                <input type="number" value="60" onchange="bpmChange(this.value)" id="bpm-input">
-                <span>BPM</span>
-                <div id="start-btn">
-                    <input type="button" data-action="Start" value="Start Metronome" onclick="handleClick(event)">
-                </div>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metronome</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div id="metronome">
+        <div id="bpm">
+            <div class="mute-main" onclick="mute()">
+                <input id="sound" value="unmuted" class="mute-input">
+                <i class="fa fa-volume-up"></i>
             </div>
-            <div id="progress">
-                <div id="progress-bar"></div>
+            <input type="number" value="60" onchange="bpmChange(this.value)" id="bpm-input">
+            <span>BPM</span>
+            <div id="start-btn">
+                <input type="button" data-action="Start" value="Start Metronome" onclick="handleClick(event)">
             </div>
         </div>
-    </body>
-    <script src="script.js"></script>
+        <div id="progress">
+            <div id="progress-bar"></div>
+        </div>
+    </div>
+</body>
+<script src="script.js"></script>
+
 </html>

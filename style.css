@@ -60,3 +60,10 @@ body {
 	padding: 1em;
 	margin-top: 5px;
 }
+.mute-main{
+    height: 25px;
+    width: 25px;
+}
+.mute-input{
+    display: none;
+}
