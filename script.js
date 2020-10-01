@@ -4,6 +4,9 @@ let metronome = document.getElementById("metronome");
 let bpm = 60; // beats per minute
 let tick = 60 / bpm; // time of one beats
 
+let beatNum = 0;
+let bpb = 4;
+
 let timer; // timer for background color change
 let pBarTimer; // timer for progress bar
 
@@ -20,6 +23,12 @@ function getRandomColor() {
 function bpmChange(val) {
 	bpm = val;
 	tick = 60 / bpm;
+}
+
+function bpbChange(beats) {
+	// start a new bar when the beat changes
+	beatNum = 0;
+	bpb = beats;
 }
 
 function move() {
@@ -40,7 +49,13 @@ function move() {
 // cahnge color and play sound when progress bar is 100% width
 function endProgress() {
 	metronome.style.background = getRandomColor();
-	new Audio("assets/click.wav").play();
+	if (beatNum == 0) {
+		// Do something for the first beat
+		new Audio("assets/click.wav").play();
+	} else {
+		new Audio("assets/click.wav").play();
+	}
+	beatNum = (beatNum + 1) % bpb;
 }
 
 //when clicking button

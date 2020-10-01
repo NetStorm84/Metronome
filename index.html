@@ -11,6 +11,8 @@
             <div id="bpm">
                 <input type="number" value="60" onchange="bpmChange(this.value)" id="bpm-input">
                 <span>BPM</span>
+                <input type="number" value="4" min="1" onchange="bpbChange(this.value)" id="bpb-input">
+                <span title="Beats Per Bar">BPB</span>
                 <div id="start-btn">
                     <input type="button" data-action="Start" value="Start Metronome" onclick="handleClick(event)">
                 </div>
