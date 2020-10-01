@@ -7,6 +7,8 @@ let tick = 60 / bpm; // time of one beats
 let timer; // timer for background color change
 let pBarTimer; // timer for progress bar
 
+let mute = false;
+
 function getRandomColor() {
 	// generate random color code
 	let letters = "0123456789ABCDEF";
@@ -40,7 +42,7 @@ function move() {
 // cahnge color and play sound when progress bar is 100% width
 function endProgress() {
 	metronome.style.background = getRandomColor();
-	new Audio("assets/click.wav").play();
+	if (!mute) new Audio("assets/click.wav").play();
 }
 
 //when clicking button
@@ -70,4 +72,12 @@ function startMetronome() {
 function stopMetronome() {
 	clearInterval(id);
 	clearInterval(timer);
+}
+
+function toggleSound() {
+	if (!mute)
+		document.getElementById("sound-icon").src = "./assets/mute-icon.png";
+	else document.getElementById("sound-icon").src = "./assets/unmute-icon.png";
+
+	mute = !mute;
 }

@@ -60,3 +60,12 @@ body {
 	padding: 1em;
 	margin-top: 5px;
 }
+
+#div-sound {
+	position: absolute;
+}
+
+#sound-icon {
+	width: 10%;
+	padding: 10px;
+}
