@@ -4,6 +4,7 @@ let metronome = document.getElementById('metronome');
 let bpm = 60;           // beats per minute
 let tick = 60 / bpm;    // time of one beats 
 
+
 let timer;          // timer for background color change 
 let pBarTimer;      // timer for progress bar
 
@@ -35,8 +36,19 @@ function move() {           // move progress bar
     }, tick * 10);        // this loop perform for every tick*10 seconds
 }
 
+function MetronomeFN() {
+    if (document.getElementById("toggleBtn").value == 'Start Metronome') {
+        document.getElementById("toggleBtn").value == 'Start Metronome' && startMetronome()
+    } else {
+        document.getElementById("toggleBtn").value == 'Stop Metronome' && stopMetronome()
+
+    }
+
+}
 function startMetronome() {              // change background color
     move();
+    console.log('document.getElementById("toggleBtn").value', document.getElementById("toggleBtn").value)
+    document.getElementById("toggleBtn").value = "Stop Metronome";
     timer = setInterval(() => {
         metronome.style.background = getRandomColor();
         new Audio('assets/click.wav').play();
@@ -44,6 +56,10 @@ function startMetronome() {              // change background color
 }
 
 function stopMetronome() {
+
+    document.getElementById("toggleBtn").value = "Start Metronome";
     clearInterval(timer)
     clearInterval(id)
 }
+
+
