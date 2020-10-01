@@ -12,7 +12,7 @@
                 <input type="number" value="60" onchange="bpmChange(this.value)" id="bpm-input">
                 <span>BPM</span>
                 <div id="start-btn">
-                    <input type="button" value="Start Metronome" onclick="startMetronome()">
+                    <input type="button" data-action="Start" value="Start Metronome" onclick="handleClick(event)">
                 </div>
             </div>
             <div id="progress">
