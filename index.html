@@ -9,7 +9,7 @@
     <body>
         <div id="metronome">
             <div id="bpm">
-                <input type="number" value="60" onchange="bpmChange(this.value)" id="bpm-input">
+                <input type="number" value="60" onchange="bpmChange(this.value)" oninput="bpmChange(this.value)" id="bpm-input">
                 <span>BPM</span>
                 <div id="start-btn">
                     <input type="button" data-action="Start" value="Start Metronome" onclick="handleClick(event)">
