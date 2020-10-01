@@ -1,69 +1,44 @@
-let minuteCount = 0;
-let time = 0
-let beatCount = 0;
+let pBar = document.getElementById("progress-bar");
+let metronome = document.getElementById('metronome');
 
-let bpm = 60;
-let tick = ((60 / bpm) * 10);
+let bpm = 60;           // beats per minute
+let tick = 60 / bpm;    // time of one beats 
 
-let progress = 0;
-let timer;
+let timer;          // timer for background color change 
+let pBarTimer;      // timer for progress bar
 
-// move();
-// startMetronome();
-
-function startMetronome(){
-
-    move();
-
-    timer = setInterval(() => {
-        time++
-        //interval is 1 10th of a second
-        if (time >= tick){
-            time = 0;
-            var metronome = document.getElementById('metronome');
-            metronome.style.background = getRandomColor();
-            new Audio('assets/click.wav').play();
-            move();
-        }
-        if (time % 10 == 0){
-            // We can keep track of the seconds here
-            minuteCount++;
-        }
-    }, 100);
-}
-
-function getRandomColor() {
-    var letters = '0123456789ABCDEF';
-    var color = '#';
-    for (var i = 0; i < 6; i++) {
+function getRandomColor() {     // generate random color code
+    let letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
         color += letters[Math.floor(Math.random() * 16)];
     }
     return color;
 }
 
-function move() {
-
-    console.log(tick);
-    if (progress == 0) {
-        progress = 1;
-        var elem = document.getElementById("progress-bar");
-        var width = 1;
-        var id = setInterval(() => {
-        if (width >= 100) {
-            clearInterval(id);
-            progress = 0;
-            } else {
-            width++;
-            elem.style.width = width + "%";
-        }
-    }, tick);}
+function bpmChange(val) {         
+    bpm = val;
+    tick = 60 / bpm;
 }
 
-function bpmChange(val){
-    bpm = val;
-    tick = ((60 / bpm) * 10);
-    time = 0;
+function move() {           // move progress bar
 
-    clearInterval(timer);
-    startMetronome();
+    let width = 1;
+    id = setInterval(() => {
+        if (width > 100) {
+            width = 1;
+        } 
+        else {
+            pBar.style.width = width + "vw";
+            width++;
+        }
+    }, tick*10);        // this loop perform for every tick*10 seconds
+}
+
+function startMetronome(){              // change background color
+    move();
+    timer = setInterval(() => {                    
+        metronome.style.background = getRandomColor();
+        new Audio('assets/click.wav').play();
+    }, tick*1000);          // this loop perform after every tick*1000 seconds
 }
