@@ -1,14 +1,24 @@
 let pBar = document.getElementById("progress-bar");
-let metronome = document.getElementById("metronome");
+let metronome = document.getElementById("metronome")
+let accents = document.getElementById("accents");
+
+//Path of the beats
+const beat1 = "assets/click.wav";
+
+let current_beat = beat1; //Declare initial beat
 
 let bpm = 60; // beats per minute
 let tick = 60 / bpm; // time of one beats
+let accent = 4; //Accents
+
 
 let timer; // timer for background color change
 let pBarTimer; // timer for progress bar
 
 let mute = false;
 let shouldMove = false;
+
+accents.addEventListener("click", change_beat); //Initialize 
 
 function getRandomColor() {
 	// generate random color code
@@ -33,12 +43,17 @@ function move(width = 1) {
 	// running
 	setTimeout(() => {
 		let nextWidth = width;
+		let parts = parseInt(100/accent);
+
 		if (width > 100) {
 			endProgress();
 			nextWidth = 1;
 		} else {
 			pBar.style.width = width + "vw";
 			nextWidth++;
+
+			if(width%parts == 0)
+				if (!mute) new Audio("assets/click.wav").play();	
 		}
 
 		if (shouldMove) {
@@ -89,4 +104,21 @@ function toggleSound() {
 	else document.getElementById("sound-icon").src = "./assets/unmute-icon.png";
 
 	mute = !mute;
+}
+
+// Function to change the beat when a beat button is pressed
+function change_beat(e){
+	let beat = e.target;
+
+	if(beat.classList.contains("beat_1"))
+		accent = 1;
+	else if(beat.classList.contains("beat_2"))
+		accent = 2;
+	else if(beat.classList.contains("beat_3"))
+		accent = 3;
+	else if(beat.classList.contains("beat_4"))
+		accent = 4;
+
+	document.querySelector(".active").classList.remove("active");
+	e.target.classList.add("active");
 }

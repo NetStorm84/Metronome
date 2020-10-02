@@ -61,6 +61,23 @@ body {
 	margin-top: 5px;
 }
 
+#accents {
+	margin-top: 1.5rem;
+	display: flex;
+	justify-content: space-between;
+	
+}
+#accents input[type="button"] {
+	background-color: white;
+	font-weight: bold;
+	padding: 1em;
+	flex-basis: calc(33.33% - 10px);
+}
+
+#accents .active{
+	background-color: rgb(255, 89, 13)!important;
+}
+
 #div-sound {
 	position: absolute;
 }
