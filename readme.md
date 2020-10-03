@@ -1,4 +1,4 @@
-![Metronomes gif](./assets/metronome.gif)
+![Metronome gif](./assets/images/metronome.gif)
 <br />
 After struggling to use Metronomes as I am unable to hear if I land exactly on the beat, I decided to create a visual metronome.
 
