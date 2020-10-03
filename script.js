@@ -50,7 +50,7 @@ function move(width = 1) {
 // cahnge color and play sound when progress bar is 100% width
 function endProgress() {
 	metronome.style.background = getRandomColor();
-	if (!mute) new Audio("assets/click.wav").play();
+	if (!mute) new Audio("assets/audio/click.wav").play();
 }
 
 //when clicking button
@@ -85,8 +85,8 @@ function stopMetronome() {
 
 function toggleSound() {
 	if (!mute)
-		document.getElementById("sound-icon").src = "./assets/mute-icon.png";
-	else document.getElementById("sound-icon").src = "./assets/unmute-icon.png";
+		document.getElementById("sound-icon").src = "./assets/images/mute-icon.png";
+	else document.getElementById("sound-icon").src = "./assets/images/unmute-icon.png";
 
 	mute = !mute;
 }
