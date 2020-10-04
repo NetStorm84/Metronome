@@ -8,7 +8,7 @@ let loaded = false;
 let counter = 0;
 let start = 0;
 let end = 0;
-let bpm = 60; // beats per minute
+let bpm = 120; // beats per minute
 let tick = 60 / bpm; // time of one beats
 
 let timer; // timer for background color change
@@ -71,14 +71,12 @@ function endProgress() {
 function handleClick(event) {
   //get the button
   const button = event.target;
-  console.log(button);
 
   //check the action status
   const stopAction = button.dataset.action != "Start";
 
   //switch the action
   const actionToggle = !stopAction ? "Stop" : "Start";
-  console.log(actionToggle);
 
   button.innerHTML = `${actionToggle} Metronome`;
   button.dataset.action = actionToggle;
@@ -110,7 +108,6 @@ function toggleSound() {
 }
 
 function setBpmWithSpaceBar() {
-  console.log("asidjf");
   spaceBarMessage.style.display = "flex";
   spaceBpm = true;
 }
