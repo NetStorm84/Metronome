@@ -23,6 +23,8 @@ function getRandomColor() {
 function bpmChange(val) {
 	bpm = val;
 	tick = 60 / bpm;
+	bpmSpan = document.getElementById("bpm-value");
+	bpmSpan.innerHTML = val;
 }
 
 // move progress bar
@@ -55,14 +57,19 @@ function endProgress() {
 
 //when clicking button
 function handleClick(event) {
+
 	//get the button
 	const button = event.target;
+	console.log(button)
+
 	//check the action status
 	const stopAction = button.dataset.action != "Start";
+
 	//switch the action
 	const actionToggle = !stopAction ? "Stop" : "Start";
+	console.log(actionToggle)
 
-	button.value = `${actionToggle} Metronome`;
+	button.innerHTML = `${actionToggle} Metronome`;
 	button.dataset.action = actionToggle;
 
 	if (stopAction) {
@@ -85,8 +92,8 @@ function stopMetronome() {
 
 function toggleSound() {
 	if (!mute)
-		document.getElementById("sound-icon").src = "./assets/images/mute-icon.png";
-	else document.getElementById("sound-icon").src = "./assets/images/unmute-icon.png";
+		document.getElementById("sound-icon").className = "las la-volume-off";
+	else document.getElementById("sound-icon").className = "las la-volume-up";
 
 	mute = !mute;
 }
