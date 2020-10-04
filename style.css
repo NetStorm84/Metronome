@@ -1,8 +1,10 @@
 html,
 body {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 	height: 100%;
 	width: 100%;
 	margin: 0px;
+	padding: 0;
 }
 
 #metronome {
@@ -12,11 +14,6 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-}
-
-#metronome a{
-	color: white;
-	text-decoration: none;
 }
 
 #progress {
@@ -31,13 +28,6 @@ body {
 	width: 1%;
 	height: 100%;
 	background-color: green;
-}
-
-#bpm {
-	position: relative;
-	margin-top: -10em;
-	display: block;
-	align-items: center;
 }
 
 #bpm > input {
@@ -68,10 +58,62 @@ body {
 }
 
 #div-sound {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	position: absolute;
+	top: 20px;
+	left: 20px;
+	width: 50px;
+	height: 50px;
+	background-color: #ffffff;
+	border-radius: 100%;
 }
 
 #sound-icon {
-	width: 10%;
-	padding: 10px;
+	font-size: 30px;
+}
+
+.bpm-main {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 300px;
+	height: 300px;
+	background-color: white;
+	border-radius: 10px;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.github-link {
+	color: #24a0ed;
+	font-size: 13px;
+	text-decoration: none;
+}
+
+.github-link:hover {
+	text-decoration: underline;
+}
+
+.start-btn {
+	margin-bottom: 10px;
+	background-color: #6699cc;
+	color: #ffffff;
+	font-size: 16px;
+	width: 90%;
+	height: 50px;
+	border-radius: 10px;
+	border: 0;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.bpm-info {
+	font-size: 30px;
+	margin-bottom: 20px;
+}
+
+.bpm-range {
+	width: 90%;
+	margin-bottom: 10px;
 }
