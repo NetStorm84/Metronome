@@ -1,51 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Visual Metronome</title>
-		<link rel="stylesheet" href="style.css" />
-		<link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
-		<link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
-	</head>
-	<body>
-		<div id="div-sound">
-			<i class="las la-volume-up"
-				alt="mute"
-				onclick="toggleSound()"
-				oninput="bpmChange(this.value)"
-				id="sound-icon"
-			></i>
-		</div>
-		<div id="metronome">
-			<div class="bpm-main">
-				<span class="bpm-info">
-					<b id="bpm-value">60</b>
-					BPM
-				</span>
-				<input 
-					class="bpm-range"
-					type="range"
-					value="60"
-					min="0" 
-					max="300"
-					oninput="bpmChange(this.value)"
-				/>
-				<button
-					id="start"
-					class="start-btn"
-					data-action="Start"
-					disabled="true"
-					onclick="handleClick(event)"
-				>
-					Start Metronome
-				</button>
-				<a class="github-link" href="https://netstorm84.github.io/Metronome/">Click here to contribute on GitHub</a>
-				<div id="progress">
-					<div id="progress-bar"></div>
-				</div>
-			</div>
-		</div>
-	</body>
-	<script src="script.js"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Visual Metronome</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css"
+    />
+  </head>
+  <body>
+    <div id="div-sound">
+      <i
+        class="las la-volume-up"
+        alt="mute"
+        onclick="toggleSound()"
+        oninput="bpmChange(this.value)"
+        id="sound-icon"
+      ></i>
+    </div>
+    <div id="metronome">
+      <div class="bpm-main">
+        <span class="bpm-info">
+          <b id="bpm-value">60</b>
+          BPM
+        </span>
+        <input class="bpm-range" type="range" value="60" min="1" max="300" oninput="bpmChange(this.value)" />
+        <button id="start" class="start-btn" data-action="Start" disabled="true" onclick="handleClick(event)">
+          Start Metronome
+        </button>
+        <a class="github-link" href="https://netstorm84.github.io/Metronome/">Click here to contribute on GitHub</a>
+        <div id="progress">
+          <div id="progress-bar"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="script.js"></script>
 </html>
