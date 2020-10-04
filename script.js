@@ -50,7 +50,7 @@ function move(width = 1) {
 	}, tick * 10)
 }
 
-// cahnge color and play sound when progress bar is 100% width
+// change color and play sound when progress bar is 100% width
 function endProgress() {
 	metronome.style.background = getRandomColor();
 	if (!mute) {
