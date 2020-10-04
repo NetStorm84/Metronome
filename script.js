@@ -1,15 +1,22 @@
 let pBar = document.getElementById("progress-bar");
 let metronome = document.getElementById("metronome");
+let spaceBarMessage = document.getElementById("space-bar-message");
+let dots = document.getElementsByClassName("dot");
+let bpmBar = document.getElementById("bpm-bar");
 let clickSound = null;
 let loaded = false;
-let bpm = 60; // beats per minute
+let counter = 0;
+let start = 0;
+let end = 0;
+let bpm = 120; // beats per minute
 let tick = 60 / bpm; // time of one beats
 
-let timer, id; // timer for background color change
+let timer; // timer for background color change
 let pBarTimer; // timer for progress bar
 
 let mute = false;
 let shouldMove = false;
+let spaceBpm = false;
 
 function getRandomColor() {
   // generate random color code
@@ -34,9 +41,7 @@ function move(width = 1) {
   // uses the most recent tick value, which
   // lets us adjust the speed of the metronome while it is
   // running
-  let timeout;
-  if (timeout) clearTimeout(timeout);
-  timeout = setTimeout(() => {
+  setTimeout(() => {
     let nextWidth = width;
     if (width > 100) {
       endProgress();
@@ -45,13 +50,14 @@ function move(width = 1) {
       pBar.style.width = width + "vw";
       nextWidth += 1 / tick;
     }
+
     if (shouldMove) {
       move(nextWidth);
     }
   }, tick);
 }
 
-// cahnge color and play sound when progress bar is 100% width
+// change color and play sound when progress bar is 100% width
 function endProgress() {
   metronome.style.background = getRandomColor();
   if (!mute) {
@@ -65,14 +71,12 @@ function endProgress() {
 function handleClick(event) {
   //get the button
   const button = event.target;
-  console.log(button);
 
   //check the action status
   const stopAction = button.dataset.action != "Start";
 
   //switch the action
   const actionToggle = !stopAction ? "Stop" : "Start";
-  console.log(actionToggle);
 
   button.innerHTML = `${actionToggle} Metronome`;
   button.dataset.action = actionToggle;
@@ -93,14 +97,19 @@ function startMetronome() {
 function stopMetronome() {
   shouldMove = false;
   clearInterval(timer);
-  clearTimeout(id);
 }
 
 function toggleSound() {
-  if (!mute) document.getElementById("sound-icon").className = "las la-volume-off";
+  if (!mute)
+    document.getElementById("sound-icon").className = "las la-volume-off";
   else document.getElementById("sound-icon").className = "las la-volume-up";
 
   mute = !mute;
+}
+
+function setBpmWithSpaceBar() {
+  spaceBarMessage.style.display = "flex";
+  spaceBpm = true;
 }
 
 window.onload = function () {
@@ -112,3 +121,30 @@ window.onload = function () {
     }
   });
 };
+
+document.addEventListener("keydown", (e) => {
+  e.preventDefault();
+  if (e.code === "Space" && spaceBpm) {
+    if (counter === 0) {
+      start = new Date().getTime();
+      setTimeout(() => {
+        counter = 0;
+        spaceBarMessage.style.display = "none";
+        for (let i = 0; i < 4; i++) dots[i].style.backgroundColor = "#000";
+        spaceBpm = false;
+      }, 8000);
+    }
+    if (counter === 3) {
+      end = new Date().getTime();
+      let diff = (end - start) / 1000;
+      let newBpm = Math.floor((4 / diff) * 60);
+      bpmChange(Math.min(newBpm, 300));
+      bpmBar.value = newBpm;
+      spaceBpm = false;
+      spaceBarMessage.style.display = "none";
+    }
+    if (counter < 4) {
+      dots[counter++].style.backgroundColor = "green";
+    }
+  }
+});
