@@ -1,0 +1,166 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+blockquote, q {
+	quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+em {
+	font-style: italic;
+}
+
+strong {
+	font-weight: bold;
+}
+
+
+html,
+body {
+	height: 100%;
+	width: 100%;
+	margin: 0px;
+	font-family: 'Open Sans', 'Roboto', Helvetica, Arial, sans-serif;
+}
+
+.metronome {
+	background-color: gray;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.progress {
+	width: 100%;
+	height: 3em;
+	position: absolute;
+	bottom: 0;
+	background-color:rgba(98, 98, 98, 0.5);
+}
+.progress-bar {
+	width: 1%;
+	height: 100%;
+	background-color: white;
+}
+
+.bpm {
+	position: relative;
+	margin-top: -10em;
+	display: block;
+	align-items: center;
+	color: white;
+}
+
+.bpm > input {
+	text-align: center;
+	height: 40px;
+	width: 3em;
+	font-size: 2em;
+	font-weight: bold;
+	border-radius: 3px;
+}
+
+.bpm span {
+	text-align: center;
+	font-weight: bold;
+	font-size: 2em;
+	margin-left: 1rem
+}
+
+.start-btn {
+	display: block;
+	width: 100%;
+	margin-bottom: 1rem;
+}
+
+.start-btn input[type="button"] {
+	background-color: white;
+	font-weight: bold;
+	width: 100%;
+	padding: 0.5rem;
+	margin-top: 20px;
+	font-size: 20px;
+	border: 0;
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+.div-sound{
+	position: absolute;
+	background-color: white;
+	padding: 1rem;
+	left: 1rem;
+	top: 1rem;
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+.div-sound img {
+	max-height: 40px;
+}
+
+.sound-icon {
+	width: 10%;
+	padding: 10px;
+}
+
+.contrib-link:link,
+.contrib-link:visited,
+.contrib-link:focus,
+.contrib-link:active {
+	font-size: 18px;
+	color: white;
+	font-weight: bold;
+}
+
+.sr-only {
+	display: none;
+}

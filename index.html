@@ -1,45 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Visual Metronome</title>
-		<link rel="stylesheet" href="style.css" />
-		<link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
-	</head>
-	<body>
-		<div id="div-sound">
-			<img
-				src="./assets/images/unmute-icon.png"
-				alt="mute"
-				onclick="toggleSound()"
-				oninput="bpmChange(this.value)"
-				id="sound-icon"
-			/>
-		</div>
-		<div id="metronome">
-			<div id="bpm">
-				<input
-					type="number"
-					value="60"
-					onchange="bpmChange(this.value)"
-					id="bpm-input"
-				/>
-				<span>BPM</span>
-				<div id="start-btn">
-					<input
-						type="button"
-						data-action="Start"
-						value="Start Metronome"
-						onclick="handleClick(event)"
-					/>
-				</div>
-				<a href="https://netstorm84.github.io/Metronome/">Click here to contribute on GitHub</a>
-			</div>
-			<div id="progress">
-				<div id="progress-bar"></div>
-			</div>
-		</div>
-	</body>
-	<script src="script.js"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Visual Metronome</title>
+    <link rel="stylesheet" href="assets/styles/main.css" />
+    <link
+      rel="shortcut icon"
+      href="assets/images/favicon.png"
+      type="image/x-icon"
+    />
+    <script async src="assets/scripts/main.js"></script>
+  </head>
+  <body>
+    <header>
+      <div id="sound-toggle" class="header-item div-sound">
+        <img
+          id="sound-icon"
+          src="./assets/images/unmute-icon.png"
+          alt="SOund icon that toggles audio on and off"
+        />
+      </div>
+    </header>
+    <section id="metronome" class="metronome">
+      <div class="bpm">
+        <label for="bpm-input" class="sr-only">Select a number</label>
+        <input id="bpm-input" type="number" value="60" />
+        <span>BPM</span>
+        <div class="start-btn">
+          <input
+            id="start-btn"
+            type="button"
+            data-action="Start"
+            value="Start Metronome"
+          />
+        </div>
+        <a class="contrib-link" href="https://netstorm84.github.io/Metronome/"
+          >Click here to contribute on GitHub</a
+        >
+      </div>
+      <div class="progress">
+        <div id="progress-bar" class="progress-bar"></div>
+      </div>
+    </section>
+  </body>
 </html>
