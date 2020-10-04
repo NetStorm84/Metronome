@@ -1,6 +1,7 @@
 let pBar = document.getElementById("progress-bar");
 let metronome = document.getElementById("metronome");
-
+let clickSound = null;
+let loaded = false;
 let bpm = 60; // beats per minute
 let tick = 60 / bpm; // time of one beats
 
@@ -52,7 +53,7 @@ function move(width = 1) {
 // cahnge color and play sound when progress bar is 100% width
 function endProgress() {
 	metronome.style.background = getRandomColor();
-	if (!mute) new Audio("assets/audio/click.wav").play();
+	if (!mute) clickSound.play();
 }
 
 //when clicking button
@@ -97,3 +98,14 @@ function toggleSound() {
 
 	mute = !mute;
 }
+
+window.onload = function () {
+	clickSound = new Audio("assets/audio/click.wav");
+	clickSound.addEventListener("canplaythrough", function() {
+		loaded = true;
+		if (document.querySelector('[data-action="Start"]')) {
+			document.querySelector('[data-action="Start"]').disabled = false;
+		}
+	});
+};
+
