@@ -55,8 +55,9 @@ function endProgress() {
 	metronome.style.background = getRandomColor();
 	if (!mute) {
 		//load sound so that it resets on every beat
-		clickSound.load()
-		clickSound.play();}
+		clickSound.currentTime = 0;
+		clickSound.play();
+	}
 }
 
 //when clicking button
