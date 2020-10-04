@@ -6,39 +6,44 @@
 		<title>Visual Metronome</title>
 		<link rel="stylesheet" href="style.css" />
 		<link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
+		<link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
 	</head>
 	<body>
 		<div id="div-sound">
-			<img
-				src="./assets/images/unmute-icon.png"
+			<i class="las la-volume-up"
 				alt="mute"
 				onclick="toggleSound()"
 				oninput="bpmChange(this.value)"
 				id="sound-icon"
-			/>
+			></i>
 		</div>
 		<div id="metronome">
-			<div id="bpm">
-				<input
-					type="number"
+			<div class="bpm-main">
+				<span class="bpm-info">
+					<b id="bpm-value">60</b>
+					BPM
+				</span>
+				<input 
+					class="bpm-range"
+					type="range"
 					value="60"
-					onchange="bpmChange(this.value)"
-					id="bpm-input"
+					min="0" 
+					max="300"
+					oninput="bpmChange(this.value)"
 				/>
-				<span>BPM</span>
-				<div id="start-btn">
-					<input
-						type="button"
-						data-action="Start"
-						disabled="true"
-						value="Start Metronome"
-						onclick="handleClick(event)"
-					/>
+				<button
+					id="start"
+					class="start-btn"
+					data-action="Start"
+					disabled="true"
+					onclick="handleClick(event)"
+				>
+					Start Metronome
+				</button>
+				<a class="github-link" href="https://netstorm84.github.io/Metronome/">Click here to contribute on GitHub</a>
+				<div id="progress">
+					<div id="progress-bar"></div>
 				</div>
-				<a href="https://netstorm84.github.io/Metronome/">Click here to contribute on GitHub</a>
-			</div>
-			<div id="progress">
-				<div id="progress-bar"></div>
 			</div>
 		</div>
 	</body>
