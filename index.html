@@ -1,45 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Visual Metronome</title>
-		<link rel="stylesheet" href="style.css" />
-		<link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
-	</head>
-	<body>
-		<div id="div-sound">
-			<img
-				src="./assets/images/unmute-icon.png"
-				alt="mute"
-				onclick="toggleSound()"
-				oninput="bpmChange(this.value)"
-				id="sound-icon"
-			/>
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Visual Metronome</title>
+	<link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="controls">
+			<h3>Metronome #Hackoberfest</h3>
+			<hr>
+			<h4>Metronome Radius <span id="radius-value">100</span></h4>
+			<input type="range" min="60" max="300" value="100" class="slider" id="radius">
+			<h4><span id="beats-value">50</span> beats per minute</h4>
+			<input type="range" min="10" max="300" value="50" class="slider" id="beat-speed">
+			<br><br>
+			<p id="mute-audio-btn"><img src="./assets/images/unmute-icon.png" alt=""> <span>mute audio</span></p>
 		</div>
-		<div id="metronome">
-			<div id="bpm">
-				<input
-					type="number"
-					value="60"
-					onchange="bpmChange(this.value)"
-					id="bpm-input"
-				/>
-				<span>BPM</span>
-				<div id="start-btn">
-					<input
-						type="button"
-						data-action="Start"
-						value="Start Metronome"
-						onclick="handleClick(event)"
-					/>
-				</div>
-				<a href="https://netstorm84.github.io/Metronome/">Click here to contribute on GitHub</a>
-			</div>
-			<div id="progress">
-				<div id="progress-bar"></div>
+		<div class="metronome">
+			<div class="device">
+				<div id="front"></div>
+				<div id="back"></div>
 			</div>
 		</div>
-	</body>
-	<script src="script.js"></script>
+	</div>
+	<script src="./script.js"></script>
+</body>
+
+
 </html>

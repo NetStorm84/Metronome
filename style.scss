@@ -1,0 +1,90 @@
+$controlsPanelBackground: salmon;
+$pulsePanelBackground: #eee;
+$pulseColor: rebeccapurple;
+$sliderBackground: #d3d3d3;
+$sliderThumbColor: #4CAF50;
+
+body{
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0; 
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+.wrapper{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid: 100% / 20% auto;
+
+    .controls{
+        background-color: $controlsPanelBackground;
+        padding: 20px;
+        // text-align: center;
+        .slider {
+            appearance: none;
+            width: 100%;
+            height: 15px;
+            border-radius: 5px;  
+            background: $sliderBackground;
+            outline: none;
+            opacity: 0.7;
+            transition: opacity .2s;
+        }
+        .slider:hover {
+            opacity: 1;
+        }
+        .slider::thumb {
+            appearance: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%; 
+            background: $sliderThumbColor;
+            cursor: pointer;
+        }
+        .slider::-moz-range-thumb {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: $sliderThumbColor;
+            cursor: pointer;
+        }
+        
+        #mute-audio-btn {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+        #mute-audio-btn > img{
+            height: 20px;
+            width: 20px;
+            margin-right: 10px;
+        }
+    }
+
+
+    .metronome{
+        background-color: $pulsePanelBackground;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        .device{
+            position: relative;
+            #front, #back{
+                height: 100px;
+                width: 100px;
+                position: absolute;
+                background-color: $pulseColor;
+                border-radius: 50%;
+                transform: translate(-50%, -50%);
+            }
+            #back{
+                opacity: 0.3;
+                transition: width 1s, height 1s;
+            }
+        }
+    }
+}

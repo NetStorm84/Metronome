@@ -1,92 +1,70 @@
-let pBar = document.getElementById("progress-bar");
-let metronome = document.getElementById("metronome");
+window.addEventListener('DOMContentLoaded', (event) => {
 
-let bpm = 60; // beats per minute
-let tick = 60 / bpm; // time of one beats
+	// sliders
+	const radiusSlider = document.getElementById("radius");
+	const beatSlider = document.getElementById('beat-speed');
 
-let timer; // timer for background color change
-let pBarTimer; // timer for progress bar
+	// slider values
+	const radiusValue = document.getElementById('radius-value');
+	const beatsValue = document.getElementById('beats-value');
 
-let mute = false;
-let shouldMove = false;
+	radiusValue.innerHTML = radiusSlider.value;
+	beatsValue.innerHTML = beatSlider.value;
 
-function getRandomColor() {
-	// generate random color code
-	let letters = "0123456789ABCDEF";
-	let color = "#";
-	for (let i = 0; i < 6; i++) {
-		color += letters[Math.floor(Math.random() * 16)];
+	// front and back pulses
+	const front = document.getElementById('front');
+	const back = document.getElementById('back');
+
+	front.style.height = "100px";
+	front.style.width = "100px";
+
+	// audio file
+	const audio = new Audio('assets/audio/click.wav');
+	const ratio = 1.8;
+	const muteAudioBtn = document.getElementById('mute-audio-btn');
+
+	muteAudioBtn.addEventListener('click', () => {
+		audio.muted = !audio.muted;
+		muteAudioBtn.childNodes[0].src = audio.muted ? "./assets/images/mute-icon.png" : "./assets/images/unmute-icon.png";
+		muteAudioBtn.childNodes[2].innerHTML = audio.muted ? "unmute audio" : "mute audio";
+	})
+
+	var isExpanded = false;
+
+	radiusSlider.addEventListener("change", () => {
+		radiusValue.innerHTML = radiusSlider.value;
+		front.style.height = radiusSlider.value + "px";
+		front.style.width = radiusSlider.value + "px";
+		back.style.height = radiusSlider.value + "px";
+		back.style.width = radiusSlider.value + "px";
+	})
+
+	let interval = (30 / beatSlider.value);
+
+	beatSlider.addEventListener("change", () => {
+		beatsValue.innerHTML = beatSlider.value;
+		interval = (30 / beatSlider.value);
+	})
+
+
+	startMetronome();
+
+	function modifyInterval() {
+		return interval;
 	}
-	return color;
-}
 
-function bpmChange(val) {
-	bpm = val;
-	tick = 60 / bpm;
-}
+	function startMetronome() {
+		back.style.height = isExpanded ? front.style.height : (parseInt(front.style.height) * ratio) + "px";
+		back.style.width = isExpanded ? front.style.width : (parseInt(front.style.width) * ratio) + "px";
 
-// move progress bar
-function move(width = 1) {
-	// every time move() is called, it
-	// uses the most recent tick value, which
-	// lets us adjust the speed of the metronome while it is
-	// running
-	setTimeout(() => {
-		let nextWidth = width;
-		if (width > 100) {
-			endProgress();
-			nextWidth = 1;
-		} else {
-			pBar.style.width = width + "vw";
-			nextWidth++;
-		}
+		isExpanded = !isExpanded;
 
-		if (shouldMove) {
-			move(nextWidth);
-		}
-	}, tick * 10)
-}
+		back.style.transition = `width ${interval} ease-in, height ${interval} ease-in`;
+		let tempInterval = modifyInterval();
 
-// cahnge color and play sound when progress bar is 100% width
-function endProgress() {
-	metronome.style.background = getRandomColor();
-	if (!mute) new Audio("assets/audio/click.wav").play();
-}
+		audio.play();
 
-//when clicking button
-function handleClick(event) {
-	//get the button
-	const button = event.target;
-	//check the action status
-	const stopAction = button.dataset.action != "Start";
-	//switch the action
-	const actionToggle = !stopAction ? "Stop" : "Start";
-
-	button.value = `${actionToggle} Metronome`;
-	button.dataset.action = actionToggle;
-
-	if (stopAction) {
-		stopMetronome();
-	} else {
-		startMetronome();
+		setTimeout(startMetronome, tempInterval * 1000);
 	}
-}
 
-function startMetronome() {
-	// change background color
-	shouldMove = true;
-	move();
-}
-
-function stopMetronome() {
-	shouldMove = false;
-	clearInterval(timer);
-}
-
-function toggleSound() {
-	if (!mute)
-		document.getElementById("sound-icon").src = "./assets/images/mute-icon.png";
-	else document.getElementById("sound-icon").src = "./assets/images/unmute-icon.png";
-
-	mute = !mute;
-}
+});
