@@ -47,14 +47,16 @@ function move(width = 1) {
       endProgress();
       nextWidth = 1;
     } else {
-      pBar.style.width = width + "vw";
       nextWidth += 1 / tick;
+
     }
 
     if (shouldMove) {
       move(nextWidth);
     }
+
   }, tick);
+
 }
 
 // change color and play sound when progress bar is 100% width
@@ -148,3 +150,4 @@ document.addEventListener("keydown", (e) => {
     }
   }
 });
+
