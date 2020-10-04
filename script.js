@@ -53,7 +53,10 @@ function move(width = 1) {
 // cahnge color and play sound when progress bar is 100% width
 function endProgress() {
 	metronome.style.background = getRandomColor();
-	if (!mute) clickSound.play();
+	if (!mute) {
+		//load sound so that it resets on every beat
+		clickSound.load()
+		clickSound.play();}
 }
 
 //when clicking button
