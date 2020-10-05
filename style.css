@@ -14,6 +14,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  
 }
 
 #progress {
@@ -21,13 +22,17 @@ body {
   height: 3em;
   position: absolute;
   bottom: 0;
-  background-color: grey;
+  background-color: #ffffff;
+  border: solid rgba(255, 99, 71, 0.78);
+  border-width: 0.3em 0 0.4em 0;
+  padding: 0.3em 0 0.3em 0;
 }
 
 #progress-bar {
-  width: 1%;
+  width: 0;
   height: 100%;
-  background-color: green;
+  background-image: linear-gradient(to right, white, rgb(255, 99, 71));
+  border-radius: 0 25px 25px 0;
 }
 
 #bpm > input {
