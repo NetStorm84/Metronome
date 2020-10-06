@@ -8,7 +8,8 @@ body {
 }
 
 #metronome {
-  background-color: grey;
+  /*background-color: grey;*/
+  background: linear-gradient(to right,#cc2b5e,#753a88);
   width: 100%;
   height: 100%;
   display: flex;
