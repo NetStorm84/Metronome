@@ -1,5 +1,5 @@
 # Visual Metronome
-![Metronome gif](./assets/images/metronomeDemo.gif)
+![Metronome gif](./assets/images/metronome-preview.gif)
 <br />
 After struggling to use Metronomes as I am unable to hear if I land exactly on the beat, I decided to create a visual metronome. This is helpful as you can visualise when the beat changes.
 
