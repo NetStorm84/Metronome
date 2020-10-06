@@ -28,6 +28,12 @@ function getRandomColor() {
   return color;
 }
 
+//Generates Random Diraction for background gradient.
+function getRandomDir() {
+	return	Math.floor(Math.random() * 360);
+}
+
+
 function bpmChange(val) {
   bpm = val;
   tick = 60 / bpm;
@@ -59,11 +65,16 @@ function move(width = 1) {
 
 // change color and play sound when progress bar is 100% width
 function endProgress() {
-  metronome.style.background = getRandomColor();
+  /*metronome.style.background = getRandomColor();*/
+
   if (!mute) {
     //load sound so that it resets on every beat
     clickSound.currentTime = 0;
     clickSound.play();
+  
+    //this line generates Gradient, Add/Remove getRandomColor() to change the number of colors you want in the gradient. Currently it contains 3 colors.
+    metronome.style.background =  'linear-gradient(' + getRandomDir() + 'deg' + ', ' + getRandomColor() + ', ' + getRandomColor() + ', ' + getRandomColor() + ')';
+  
   }
 }
 
