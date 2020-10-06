@@ -10,6 +10,7 @@ let start = 0;
 let end = 0;
 let bpm = 120; // beats per minute
 let tick = 60 / bpm; // time of one beats
+let currentBpm = bpm; // currently playing BPM
 
 let timer; // timer for background color change
 let pBarTimer; // timer for progress bar
@@ -41,31 +42,42 @@ function bpmChange(val) {
   bpmSpan.innerHTML = val;
 }
 
+// resets progress bar CSS animation to initial state
+function resetAnimation() {
+  pBar.style.animation = 'none';
+  pBar.offsetHeight; /* trigger reflow */
+  pBar.style.animation = null;
+}
+
 // move progress bar
 function move(width = 1) {
   // every time move() is called, it
   // uses the most recent tick value, which
   // lets us adjust the speed of the metronome while it is
   // running
-  setTimeout(() => {
-    let nextWidth = width;
-    if (width > 100) {
-      endProgress();
-      nextWidth = 1;
-    } else {
-      pBar.style.width = width + "vw";
-      nextWidth++;
+  resetAnimation();
+  // change progress bar animation duration
+  pBar.style.animationDuration = tick * 1000 + 'ms';
+  // and start it
+  pBar.style.animationPlayState = 'running';
+  timer = setInterval(() => {
+    endProgress();
+    if (currentBpm != bpm) {
+      currentBpm = bpm;
+      clearInterval(timer);
+      move();
     }
-
-    if (shouldMove) {
-      move(nextWidth);
-    }
-  }, tick * 10);
+  }, tick * 1000);
 }
 
+let lastBeep = Date.now();
 // change color and play sound when progress bar is 100% width
 function endProgress() {
   /*metronome.style.background = getRandomColor();*/
+  let now = Date.now();
+  let elapsed = now - lastBeep;
+  console.log('Time since last tick: ' + elapsed + 'ms, real BPM: ' + 60000/elapsed);
+  lastBeep = now;
 
   if (!mute) {
     //load sound so that it resets on every beat
@@ -106,6 +118,7 @@ function startMetronome() {
 function stopMetronome() {
   shouldMove = false;
   clearInterval(timer);
+  resetAnimation();
 }
 
 function toggleSound() {
