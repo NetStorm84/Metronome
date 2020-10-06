@@ -15,7 +15,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  
 }
 
 #progress {
@@ -34,7 +33,10 @@ body {
   height: 100%;
   background-image: linear-gradient(to right, white, rgb(255, 99, 71));
   border-radius: 0 25px 25px 0;
+  animation: 1s linear infinite paused progress;
 }
+
+@keyframes progress { from { width:0%; } to { width: 100%; }  }
 
 #bpm > input {
   text-align: center;
